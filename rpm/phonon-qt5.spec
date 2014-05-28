@@ -73,9 +73,6 @@ pushd %{_target_platform}-Qt5
 -DBIN_INSTALL_DIR:PATH=%{_kf5_bindir} \
 -DINCLUDE_INSTALL_DIR:PATH=%{_includedir} \
 -DLIB_INSTALL_DIR:PATH=%{_lib} \
-%if "%{?_lib}" == "lib64"
-%{?_cmake_lib_suffix64} \
-%endif
 -DKCFG_INSTALL_DIR:PATH=%{_datadir}/config.kcfg \
 -DPLUGIN_INSTALL_DIR:PATH=%{_kf5_plugindir} \
 -DQT_PLUGIN_INSTALL_DIR:PATH=%{_qt5_plugindir} \
@@ -87,6 +84,12 @@ pushd %{_target_platform}-Qt5
 -DKF5_LIBEXEC_INSTALL_DIR=%{_kf5_libexecdir} \
 -DKF5_INCLUDE_INSTALL_DIR=%{_kf5_includedir} \
 ..
+
+# run again if we need a suffix
+%if "%{?_lib}" == "lib64"
+%{cmake} %{?_cmake_lib_suffix64} ..
+%endif
+
 popd
 
 make %{?_smp_mflags} -C %{_target_platform}-Qt5
