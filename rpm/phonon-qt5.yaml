@@ -1,0 +1,71 @@
+Name         : phonon-qt5
+Version      : 4.7.99
+Release      : 1
+Group        : System/Base
+License      : GPLv2+
+Summary      : Multimedia framework api
+Description  : |
+  Multimedia framework api
+URL          : http://www.kde.org
+SetupOptions : -q -n %{name}-%{version}/upstream
+
+Sources:
+    - "%{name}-%{version}.tar.xz"
+
+RpmLintIgnore:
+    - devel-file-in-non-devel-package
+    - no-changelogname-tag
+    - library-without-ldconfig-postin
+    - library-without-ldconfig-postun
+
+Configure    : none
+Builder      : none
+
+PkgBR:
+    - cmake
+    - kde-filesystem
+    - qt5-tools
+PkgConfigBR:
+    - Qt5Core
+    - Qt5DBus
+    - Qt5Xml
+    - Qt5Network
+    - Qt5Gui
+    - Qt5Widgets
+    - Qt5Concurrent
+    - Qt5Test
+    - glib-2.0
+    - libpulse-mainloop-glib > 0.9.15
+    - libxml-2.0
+    - xcb
+
+RequiresPost:
+    - /sbin/ldconfig
+RequiresPostUn:
+    - /sbin/ldconfig
+
+Files:
+    - "%doc COPYING.LIB"
+    - "%dir %{_datadir}/phonon4qt5"
+    - "%{_libdir}/libphonon4qt5.so.4*"
+    - "%{_libdir}/libphonon4qt5experimental.so.4*"
+    - "%{_qt5_plugindir}/designer/libphononwidgets.so"
+    - "%dir %{_qt5_plugindir}/phonon4qt5_backend/"
+    - "%{_datadir}/dbus-1/interfaces/org.kde.Phonon4Qt5.AudioOutput.xml"
+
+SubPackages:
+    - Name: devel
+      Group: Development/Libraries
+      Summary: Development files for %{name}
+      Description: |
+        The %{name}-devel package contains the files necessary to develop applications
+        that use %{name}.
+      Files:
+          - "%{_datadir}/phonon4qt5/buildsystem/"
+          - "%dir %{_libdir}/cmake/"
+          - "%{_libdir}/cmake/phonon4qt5/"
+          - "%{_includedir}/phonon4qt5/"
+          - "%{_libdir}/libphonon4qt5.so"
+          - "%{_libdir}/libphonon4qt5experimental.so"
+          - "%{_libdir}/pkgconfig/phonon4qt5.pc"
+          - "%{_qt5_archdatadir}/mkspecs/modules/qt_phonon4qt5.pri"
