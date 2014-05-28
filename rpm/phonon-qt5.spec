@@ -113,7 +113,7 @@ mkdir -p %{buildroot}%{_qt5_plugindir}/phonon4qt5_backend
 %{_kf5_libdir}/libphonon4qt5.so
 %{_kf5_libdir}/libphonon4qt5experimental.so
 %{_kf5_libdir}/pkgconfig/phonon4qt5.pc
-%{_qt5_archdatadir}/mkspecs/modules/qt_phonon4qt5.pri
+%{_datadir}/qt5/mkspecs/modules/qt_phonon4qt5.pri
 # >> files devel
 # << files devel
 
