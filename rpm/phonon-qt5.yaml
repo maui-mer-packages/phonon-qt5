@@ -23,7 +23,7 @@ Builder      : none
 
 PkgBR:
     - cmake
-    - kde-filesystem
+    - kf5-rpm-macros
     - qt5-tools
 PkgConfigBR:
     - Qt5Core
@@ -38,6 +38,8 @@ PkgConfigBR:
     - libpulse-mainloop-glib > 0.9.15
     - libxml-2.0
     - xcb
+Requires:
+    - kf5-filesystem
 
 RequiresPost:
     - /sbin/ldconfig
@@ -47,8 +49,8 @@ RequiresPostUn:
 Files:
     - "%doc COPYING.LIB"
     - "%dir %{_datadir}/phonon4qt5"
-    - "%{_libdir}/libphonon4qt5.so.4*"
-    - "%{_libdir}/libphonon4qt5experimental.so.4*"
+    - "%{_kf5_libdir}/libphonon4qt5.so.4*"
+    - "%{_kf5_libdir}/libphonon4qt5experimental.so.4*"
     - "%{_qt5_plugindir}/designer/libphononwidgets.so"
     - "%dir %{_qt5_plugindir}/phonon4qt5_backend/"
     - "%{_datadir}/dbus-1/interfaces/org.kde.Phonon4Qt5.AudioOutput.xml"
@@ -62,10 +64,10 @@ SubPackages:
         that use %{name}.
       Files:
           - "%{_datadir}/phonon4qt5/buildsystem/"
-          - "%dir %{_libdir}/cmake/"
-          - "%{_libdir}/cmake/phonon4qt5/"
+          - "%dir %{_kf5_libdir}/cmake/"
+          - "%{_kf5_libdir}/cmake/phonon4qt5/"
           - "%{_includedir}/phonon4qt5/"
-          - "%{_libdir}/libphonon4qt5.so"
-          - "%{_libdir}/libphonon4qt5experimental.so"
-          - "%{_libdir}/pkgconfig/phonon4qt5.pc"
+          - "%{_kf5_libdir}/libphonon4qt5.so"
+          - "%{_kf5_libdir}/libphonon4qt5experimental.so"
+          - "%{_kf5_libdir}/pkgconfig/phonon4qt5.pc"
           - "%{_qt5_archdatadir}/mkspecs/modules/qt_phonon4qt5.pri"

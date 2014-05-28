@@ -15,6 +15,7 @@ URL:        http://www.kde.org
 Source0:    %{name}-%{version}.tar.xz
 Source100:  phonon-qt5.yaml
 Source101:  phonon-qt5-rpmlintrc
+Requires:   kf5-filesystem
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
 BuildRequires:  pkgconfig(Qt5Core)
@@ -30,7 +31,7 @@ BuildRequires:  pkgconfig(libpulse-mainloop-glib) > 0.9.15
 BuildRequires:  pkgconfig(libxml-2.0)
 BuildRequires:  pkgconfig(xcb)
 BuildRequires:  cmake
-BuildRequires:  kde-filesystem
+BuildRequires:  kf5-rpm-macros
 BuildRequires:  qt5-tools
 
 
@@ -61,9 +62,9 @@ that use %{name}.
 mkdir -p %{_target_platform}-Qt5
 pushd %{_target_platform}-Qt5
 %{cmake} \
-  -DPHONON_BUILD_PHONON4QT5:BOOL=ON \
-  -DPHONON_INSTALL_QT_EXTENSIONS_INTO_SYSTEM_QT:BOOL=ON \
-  ..
+-DPHONON_BUILD_PHONON4QT5:BOOL=ON \
+-DPHONON_INSTALL_QT_EXTENSIONS_INTO_SYSTEM_QT:BOOL=ON \
+..
 popd
 
 make %{?_smp_mflags} -C %{_target_platform}-Qt5
@@ -85,9 +86,7 @@ mkdir -p %{buildroot}%{_qt5_plugindir}/phonon4qt5_backend
 
 
 
-%post -p /sbin/ldconfig
 
-%postun -p /sbin/ldconfig
 
 
 
@@ -97,8 +96,8 @@ mkdir -p %{buildroot}%{_qt5_plugindir}/phonon4qt5_backend
 %defattr(-,root,root,-)
 %doc COPYING.LIB
 %dir %{_datadir}/phonon4qt5
-%{_libdir}/libphonon4qt5.so.4*
-%{_libdir}/libphonon4qt5experimental.so.4*
+%{_kf5_libdir}/libphonon4qt5.so.4*
+%{_kf5_libdir}/libphonon4qt5experimental.so.4*
 %{_qt5_plugindir}/designer/libphononwidgets.so
 %dir %{_qt5_plugindir}/phonon4qt5_backend/
 %{_datadir}/dbus-1/interfaces/org.kde.Phonon4Qt5.AudioOutput.xml
@@ -109,12 +108,12 @@ mkdir -p %{buildroot}%{_qt5_plugindir}/phonon4qt5_backend
 %files devel
 %defattr(-,root,root,-)
 %{_datadir}/phonon4qt5/buildsystem/
-%dir %{_libdir}/cmake/
-%{_libdir}/cmake/phonon4qt5/
+%dir %{_kf5_libdir}/cmake/
+%{_kf5_libdir}/cmake/phonon4qt5/
 %{_includedir}/phonon4qt5/
-%{_libdir}/libphonon4qt5.so
-%{_libdir}/libphonon4qt5experimental.so
-%{_libdir}/pkgconfig/phonon4qt5.pc
+%{_kf5_libdir}/libphonon4qt5.so
+%{_kf5_libdir}/libphonon4qt5experimental.so
+%{_kf5_libdir}/pkgconfig/phonon4qt5.pc
 %{_qt5_archdatadir}/mkspecs/modules/qt_phonon4qt5.pri
 # >> files devel
 # << files devel
