@@ -85,7 +85,7 @@ pushd %{_target_platform}-Qt5
 -DSYSCONF_INSTALL_DIR:PATH=%{_kf5_sysconfdir} \
 -DLIBEXEC_INSTALL_DIR:PATH=%{_libexecdir} \
 -DKF5_LIBEXEC_INSTALL_DIR=%{_kf5_libexecdir} \
--DKF5_INCLUDE_INSTALL_DIR=%{_kf5_includedir}
+-DKF5_INCLUDE_INSTALL_DIR=%{_kf5_includedir} \
 ..
 popd
 
