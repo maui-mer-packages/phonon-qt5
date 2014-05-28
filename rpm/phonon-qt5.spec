@@ -64,6 +64,28 @@ pushd %{_target_platform}-Qt5
 %{cmake} \
 -DPHONON_BUILD_PHONON4QT5:BOOL=ON \
 -DPHONON_INSTALL_QT_EXTENSIONS_INTO_SYSTEM_QT:BOOL=ON \
+# from kf5 macros...
+-DBUILD_SHARED_LIBS:BOOL=ON \
+-DBUILD_TESTING:BOOL=FALSE \
+-DCMAKE_BUILD_TYPE=%{_kf5_buildtype} \
+-DCMAKE_INSTALL_PREFIX:PATH=%{_kf5_prefix} \
+-DCMAKE_VERBOSE_MAKEFILE:BOOL=ON \
+-DBIN_INSTALL_DIR:PATH=%{_kf5_bindir} \
+-DINCLUDE_INSTALL_DIR:PATH=%{_includedir} \
+-DLIB_INSTALL_DIR:PATH=%{_lib} \
+%if "%{?_lib}" == "lib64"
+%{?_cmake_lib_suffix64} \
+%endif
+-DKCFG_INSTALL_DIR:PATH=%{_datadir}/config.kcfg \
+-DPLUGIN_INSTALL_DIR:PATH=%{_kf5_plugindir} \
+-DQT_PLUGIN_INSTALL_DIR:PATH=%{_qt5_plugindir} \
+-DQML_INSTALL_DIR:PATH=%{_kf5_qmldir} \
+-DIMPORTS_INSTALL_DIR:PATH=%{_qt5_importdir} \
+-DECM_MKSPECS_INSTALL_DIR:PATH=%{_kf5_datadir}/qt5/mkspecs/modules \
+-DSYSCONF_INSTALL_DIR:PATH=%{_kf5_sysconfdir} \
+-DLIBEXEC_INSTALL_DIR:PATH=%{_libexecdir} \
+-DKF5_LIBEXEC_INSTALL_DIR=%{_kf5_libexecdir} \
+-DKF5_INCLUDE_INSTALL_DIR=%{_kf5_includedir}
 ..
 popd
 
