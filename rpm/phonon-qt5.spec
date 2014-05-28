@@ -98,7 +98,6 @@ mkdir -p %{buildroot}%{_qt5_plugindir}/phonon4qt5_backend
 %dir %{_datadir}/phonon4qt5
 %{_kf5_libdir}/libphonon4qt5.so.4*
 %{_kf5_libdir}/libphonon4qt5experimental.so.4*
-%{_qt5_plugindir}/designer/libphononwidgets.so
 %dir %{_qt5_plugindir}/phonon4qt5_backend/
 %{_datadir}/dbus-1/interfaces/org.kde.Phonon4Qt5.AudioOutput.xml
 # >> files
