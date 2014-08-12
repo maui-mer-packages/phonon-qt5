@@ -54,7 +54,7 @@ Files:
     # not building with designer support
     #- "%{_qt5_plugindir}/designer/libphononwidgets.so"
     - "%dir %{_qt5_plugindir}/phonon4qt5_backend/"
-    - "%{_datadir}/dbus-1/interfaces/org.kde.Phonon4Qt5.AudioOutput.xml"
+    - "%{_kf5_dbusinterfacesdir}/org.kde.Phonon4Qt5.AudioOutput.xml"
 
 SubPackages:
     - Name: devel
@@ -65,10 +65,9 @@ SubPackages:
         that use %{name}.
       Files:
           - "%{_datadir}/phonon4qt5/buildsystem/"
-          - "%dir %{_kf5_libdir}/cmake/"
-          - "%{_kf5_libdir}/cmake/phonon4qt5/"
+          - "%{_kf5_cmakedir}/phonon4qt5/"
           - "%{_includedir}/phonon4qt5/"
           - "%{_kf5_libdir}/libphonon4qt5.so"
           - "%{_kf5_libdir}/libphonon4qt5experimental.so"
           - "%{_kf5_libdir}/pkgconfig/phonon4qt5.pc"
-          - "%{_datadir}/qt5/mkspecs/modules/qt_phonon4qt5.pri"
+          - "%{_kf5_mkspecsdir}/qt_phonon4qt5.pri"
