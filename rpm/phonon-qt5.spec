@@ -9,7 +9,7 @@ Name:       phonon-qt5
 # << macros
 
 Summary:    Multimedia framework api
-Version:    4.7.99
+Version:    4.7.80
 Release:    1
 Group:      System/Base
 License:    GPLv2+
