@@ -8,8 +8,14 @@ Name:       phonon-qt5
 # >> macros
 # << macros
 
+# >> bcond_with
+# << bcond_with
+
+# >> bcond_without
+# << bcond_without
+
 Summary:    Multimedia framework api
-Version:    4.7.80
+Version:    4.8.0
 Release:    1
 Group:      System/Base
 License:    GPLv2+
