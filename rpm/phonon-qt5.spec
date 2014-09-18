@@ -64,8 +64,39 @@ that use %{name}.
 
 %build
 # >> build pre
-%cmake_kf5 -d build -DPHONON_BUILD_PHONON4QT5:BOOL=ON -DPHONON_INSTALL_QT_EXTENSIONS_INTO_SYSTEM_QT:BOOL=ON
-%{__make} %{?_smp_mflags}
+mkdir -p %{_target_platform}-Qt5
+pushd %{_target_platform}-Qt5
+%{cmake} \
+-DPHONON_BUILD_PHONON4QT5:BOOL=ON \
+-DPHONON_INSTALL_QT_EXTENSIONS_INTO_SYSTEM_QT:BOOL=ON \
+-DBUILD_SHARED_LIBS:BOOL=ON \
+-DBUILD_TESTING:BOOL=FALSE \
+-DCMAKE_BUILD_TYPE=%{_kf5_buildtype} \
+-DCMAKE_INSTALL_PREFIX:PATH=%{_kf5_prefix} \
+-DCMAKE_VERBOSE_MAKEFILE:BOOL=ON \
+-DBIN_INSTALL_DIR:PATH=%{_kf5_bindir} \
+-DINCLUDE_INSTALL_DIR:PATH=%{_includedir} \
+-DLIB_INSTALL_DIR:PATH=%{_lib} \
+-DKCFG_INSTALL_DIR:PATH=%{_datadir}/config.kcfg \
+-DPLUGIN_INSTALL_DIR:PATH=%{_kf5_plugindir} \
+-DQT_PLUGIN_INSTALL_DIR:PATH=%{_qt5_plugindir} \
+-DQML_INSTALL_DIR:PATH=%{_kf5_qmldir} \
+-DIMPORTS_INSTALL_DIR:PATH=%{_qt5_importdir} \
+-DECM_MKSPECS_INSTALL_DIR:PATH=%{_kf5_datadir}/qt5/mkspecs/modules \
+-DSYSCONF_INSTALL_DIR:PATH=%{_kf5_sysconfdir} \
+-DLIBEXEC_INSTALL_DIR:PATH=%{_libexecdir} \
+-DKF5_LIBEXEC_INSTALL_DIR=%{_kf5_libexecdir} \
+-DKF5_INCLUDE_INSTALL_DIR=%{_kf5_includedir} \
+..
+
+# run again if we need a suffix
+%if "%{?_lib}" == "lib64"
+%{cmake} %{?_cmake_lib_suffix64} ..
+%endif
+
+popd
+
+make %{?_smp_mflags} -C %{_target_platform}-Qt5
 # << build pre
 
 
@@ -76,8 +107,7 @@ that use %{name}.
 %install
 rm -rf %{buildroot}
 # >> install pre
-%kf5_make_install
-mkdir -p %{buildroot}%{_qt5_plugindir}/phonon4qt5_backend
+make install/fast DESTDIR=%{buildroot} -C %{_target_platform}-Qt5
 # << install pre
 
 # >> install post
