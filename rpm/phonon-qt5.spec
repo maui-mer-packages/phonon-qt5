@@ -119,7 +119,6 @@ make install/fast DESTDIR=%{buildroot} -C %{_target_platform}-Qt5
 %dir %{_datadir}/phonon4qt5
 %{_kf5_libdir}/libphonon4qt5.so.4*
 %{_kf5_libdir}/libphonon4qt5experimental.so.4*
-%dir %{_qt5_plugindir}/phonon4qt5_backend/
 %{_kf5_dbusinterfacesdir}/org.kde.Phonon4Qt5.AudioOutput.xml
 # >> files
 # << files

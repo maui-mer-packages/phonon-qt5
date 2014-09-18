@@ -53,7 +53,6 @@ Files:
     - "%{_kf5_libdir}/libphonon4qt5experimental.so.4*"
     # not building with designer support
     #- "%{_qt5_plugindir}/designer/libphononwidgets.so"
-    - "%dir %{_qt5_plugindir}/phonon4qt5_backend/"
     - "%{_kf5_dbusinterfacesdir}/org.kde.Phonon4Qt5.AudioOutput.xml"
 
 SubPackages:
