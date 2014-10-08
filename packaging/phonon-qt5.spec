@@ -8,12 +8,6 @@ Name:       phonon-qt5
 # >> macros
 # << macros
 
-# >> bcond_with
-# << bcond_with
-
-# >> bcond_without
-# << bcond_without
-
 Summary:    Multimedia framework api
 Version:    4.8.0
 Release:    1
@@ -57,7 +51,7 @@ that use %{name}.
 
 
 %prep
-%setup -q -n %{name}-%{version}/upstream
+%setup -q -n %{name}-%{version}
 
 # >> setup
 # << setup

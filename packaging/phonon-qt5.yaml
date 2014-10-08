@@ -7,7 +7,6 @@ Summary      : Multimedia framework api
 Description  : |
   Multimedia framework api
 URL          : http://www.kde.org
-SetupOptions : -q -n %{name}-%{version}/upstream
 
 Sources:
     - "%{name}-%{version}.tar.xz"
